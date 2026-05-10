@@ -29,7 +29,7 @@ public class CreateBookCommandHandler implements CommandHandler<CreateBookComman
     @Override
     public CreateBookResponse handle(CreateBookCommand command) {
         rules.bookWithSameNameAndAuthorMustNotExist(command.bookName(), command.authorName());
-
+        rules.bookWithSameShelfNumberNotExist(command.shelfNumber());
         var categories = command.categoryIds().stream()
             .map(id -> categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Category not found: " + id)))
             .collect(Collectors.toSet());

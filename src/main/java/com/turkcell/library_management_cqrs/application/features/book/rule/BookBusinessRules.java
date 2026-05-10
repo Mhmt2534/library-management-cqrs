@@ -19,4 +19,12 @@ public class BookBusinessRules {
             throw new RuntimeException("Book with same name and author already exists");
         }
     }
+
+    public void bookWithSameShelfNumberNotExist(String shelfNumber) {
+        var existingBook = bookRepository.findByShelfNumber(shelfNumber);
+        if (existingBook.isPresent()) {
+            throw new RuntimeException("Book with same shelf number already exists");
+        }
+    }
+
 }

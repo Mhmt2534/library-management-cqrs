@@ -30,6 +30,7 @@ public class UpdateBookCommandHandler implements CommandHandler<UpdateBookComman
         var book = bookRepository.findById(command.id()).orElseThrow(() -> new RuntimeException("Book not found: " + command.id()));
 
         rules.bookWithSameNameAndAuthorMustNotExist(command.bookName(), command.authorName());
+        rules.bookWithSameShelfNumberNotExist(command.shelfNumber());
 
         var categories = command.categoryIds().stream()
             .map(id -> categoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Category not found: " + id)))
