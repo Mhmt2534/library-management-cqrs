@@ -30,7 +30,7 @@ public class BookCopy {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private BookCopyStatus status;
+    private BookCopyStatus status = BookCopyStatus.AVAILABLE;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "book_id")
