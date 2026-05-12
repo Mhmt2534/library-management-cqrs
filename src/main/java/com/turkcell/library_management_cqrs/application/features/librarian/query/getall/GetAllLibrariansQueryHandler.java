@@ -22,6 +22,13 @@ public class GetAllLibrariansQueryHandler implements QueryHandler<GetAllLibraria
     @Override
     public Page<GetAllLibrariansResponse> handle(GetAllLibrariansQuery query) {
         PageRequest pageRequest = PageRequest.of(query.pageNumber(), query.pageSize());
+
+        try {
+            Thread.sleep(4000); // Simulate a long-running operation for performance testing
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
         return librarianRepository.findAll(pageRequest).map(mapper::getAllLibrariansResponseFromLibrarian);
     }
 }

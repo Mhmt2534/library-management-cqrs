@@ -24,7 +24,9 @@ public class PerformanceBehavior implements PipelineBehavior {
         long duration = endTime - startTime;
 
         if (duration > THRESHOLD_MS) {
-            System.out.println("[PerformanceBehavior] WARNING: " + requestName + " exceeded threshold. Duration: " + duration + "ms");
+            for (int i = 0; i < 6; i++) {
+                    System.out.println("[PerformanceBehavior] WARNING: " + requestName + " exceeded threshold. Duration: " + duration + "ms");
+            }
         }
 
         return response;
